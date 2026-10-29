@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Matches</title>
+        <style>
+            body{
+                background-color:rgb(194, 207, 223);
+            }
+            header{
+             background:#143164;
+             color:white;
+             text-align:center;
+             padding:30px;
+             margin:5px;
+            }
+
+            section{
+             background:white;
+             padding:30px;
+             margin-bottom:30px; /*distance*/
+             border-radius:10px; /*border edge curve */
+            }
+            main{
+                max-width:1200px;/*rule*/
+                margin:25px auto;
+                padding:20px;
+             }
+             .filter-form-class{
+              display:flex;
+              flex-wrap:wrap;
+              align-items:center;
+              gap:12px;
+              margin-bottom:18px;
+             }
+        </style>
+    </head>
+</html>
+
+    <header>
+    <h1>🏏IPL Match Schedule</h1>
+    <p>Find your match and book your tickets</p>
+    </header>
+
+   <main>
+    <section>
+<h2>Ticket Booking Information</h2>
+<ul>
+        <li>Select your favourite team.</li>
+        <li>check the match date,time and value.</li>
+        <li>Compare the available ticket prices.</li>
+        <li>Click Book to view yout selected match.</li>   
+</ul>
+    </section>
+    <section>
+        <h2>Find a Match</h2>
+        <from class="filter-form-class">
+            <label for="teamFilter">Filter by Name</label>
+            <select id="teamFilter" name="team">
+                <option value="">All Teams</option>
+                <option vlaue="RCB">Royal Challenges Banglore</option>
+                <option value="MI">Mumbai Indians</option>
+                <option value="CSK">Chennai Super king</option>
+                <option value="GT">Gujurat taitans</option>
+                <option value="SRH">Sunrises Hydrebad</option>
+                <option value="KKR">Kolkata knight riders</option>
+            </select>
+<button style="padding:4px;background-color:rgb(116, 110, 155);border-radius:10px">Apply Filter</button>
+<button style="padding:4px;background-color:rgb(116, 110, 155);border-radius:10px">Show all</button>
+        </from>
+    </section>
+</main>
