@@ -1,14 +1,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>IPL Ticket Booking Portal</title>
 
     <style>
-        /* General Reset */
+
+        /* Reset and General Styles */
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -17,91 +22,62 @@
         }
 
         body {
-            background: #f1f4f9;
-            color: #263247;
+            background-color: #f4f6f9;
+            color: #333;
             padding-bottom: 40px;
         }
 
-        /* Header */
         header {
-            background: linear-gradient(135deg, #071629, #142d50);
-            color: white;
+            background-color: #0b1a30;
+            color: #ffffff;
             text-align: center;
-            padding: 35px 15px;
-            border-bottom: 4px solid #e21d24;
+            padding: 20px 0;
+            margin-bottom: 30px;
         }
 
-        header h1 {
-            font-size: 30px;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
+        /* Layout Container */
 
-        header p {
-            color: #cbd5e1;
-            font-size: 14px;
-        }
-
-        /* Main Container */
         .container {
-            max-width: 650px;
-            margin: 35px auto;
+            max-width: 600px;
+            margin: 0 auto;
             padding: 0 20px;
         }
 
         /* Card Styling */
+
         .card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 18px rgba(15, 35, 60, 0.07);
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         h2 {
             color: #0b1a30;
-            font-size: 21px;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #edf0f5;
-        }
-
-        /* Match Details */
-        .match-details {
-            background: #f7f9fc;
-            border-radius: 8px;
-            padding: 18px;
-            border-left: 4px solid #e21d24;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f4f6f9;
+            padding-bottom: 8px;
         }
 
         .match-details p {
-            margin-bottom: 13px;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        .match-details p:last-child {
-            margin-bottom: 0;
-        }
-
-        .match-details strong {
-            color: #0b1a30;
-            display: inline-block;
-            min-width: 85px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
         }
 
         /* Form Styling */
+
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: bold;
-            font-size: 14px;
-            color: #24344d;
+            font-size: 0.9rem;
         }
 
         select,
@@ -109,151 +85,109 @@
         input[type="email"],
         input[type="number"] {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 7px;
-            font-size: 15px;
-            background: #fff;
-            outline: none;
-            transition: 0.2s;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 1rem;
         }
 
-        select:focus,
-        input:focus {
-            border-color: #e21d24;
-            box-shadow: 0 0 0 3px rgba(226, 29, 36, 0.1);
-        }
+        /* Error Text Message Style */
 
-        /* Error Message */
         .error-text {
             color: #e21d24;
-            font-size: 12px;
+            font-size: 0.8rem;
             display: block;
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
-        /* Price Display */
         .price-display {
-            background: #edf8ef;
-            border: 1px solid #c8e8cd;
-            border-radius: 8px;
-            padding: 18px;
-            margin-top: 20px;
+            background-color: #eef7ee;
+            border: 1px solid #cce8cc;
+            border-radius: 4px;
+            padding: 12px;
+            margin-top: 15px;
             text-align: center;
-            color: #237536;
+            color: #2e7d32;
         }
 
-        .price-display h3 {
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
+        /* Button Styling */
 
-        .price-display p {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        /* Buttons */
         button {
             width: 100%;
-            background: #e21d24;
+            background-color: #e21d24;
             color: white;
             border: none;
-            padding: 14px;
-            font-size: 16px;
+            padding: 12px;
+            font-size: 1rem;
             font-weight: bold;
-            border-radius: 7px;
+            border-radius: 4px;
             cursor: pointer;
             margin-top: 15px;
-            transition: 0.2s;
+            transition: background-color 0.2s;
         }
 
         button:hover {
-            background: #bd151b;
-            transform: translateY(-2px);
+            background-color: #c6161c;
         }
 
         #viewHistoryButton {
-            background: #0b1a30;
+            background-color: #0b1a30;
         }
 
         #viewHistoryButton:hover {
-            background: #1b3558;
+            background-color: #050d1a;
         }
 
-        /* Booking History */
+        /* Table Design */
+
         .hidden {
             display: none;
         }
 
         #historyContainer {
             margin-top: 20px;
-            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 14px;
+            margin-top: 10px;
+            font-size: 0.9rem;
         }
 
-        th, td {
-            border: 1px solid #e2e8f0;
-            padding: 12px;
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 10px;
             text-align: left;
             vertical-align: top;
         }
 
         th {
-            background: #0b1a30;
-            color: white;
+            background-color: #f4f6f9;
+            font-weight: bold;
         }
 
-        tr:nth-child(even) {
-            background: #f7f9fc;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            color: #64748b;
-            font-size: 13px;
-            margin-top: 30px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 23px;
-            }
-
-            .container {
-                padding: 0 12px;
-            }
-
-            .card {
-                padding: 18px;
-            }
-        }
     </style>
+
 </head>
 
 <body>
 
-    <!-- Header -->
     <header>
-        <h1>🏏 IPL Ticket Booking Portal</h1>
-        <p>Book your seats. Feel the excitement. Experience IPL!</p>
+        <h1>IPL Ticket Booking Portal</h1>
     </header>
 
     <div class="container">
 
-        <!-- Match Information -->
+        <!-- Match Details Section -->
+
         <section class="card">
+
             <h2>Match Information</h2>
 
             <div class="match-details">
+
                 <p>
                     <strong>Match:</strong>
                     <span id="displayTeams">Loading...</span>
@@ -261,91 +195,42 @@
 
                 <p>
                     <strong>Date:</strong>
-                    <span>Loading...</span>
+                    <span id="displayDate">Loading...</span>
                 </p>
 
                 <p>
                     <strong>Venue:</strong>
-                    <span>Loading...</span>
+                    <span id="displayVenue">Loading...</span>
                 </p>
+
             </div>
+
         </section>
-
-        <!-- Booking Section -->
-        <section class="card">
-            <h2>Book Your Tickets</h2>
-
-            <form id="bookingForm">
-
-                <div class="form-group">
-                    <label for="customerName">Full Name</label>
-                    <input type="text" id="customerName"
-                           placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email"
-                           placeholder="Enter your email">
-                </div>
-
-                <div class="form-group">
-                    <label for="ticketType">Ticket Category</label>
-                    <select id="ticketType">
-                        <option value="">Select ticket category</option>
-                        <option value="General">General Stand</option>
-                        <option value="Premium">Premium Stand</option>
-                        <option value="VIP">VIP Stand</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="ticketCount">Number of Tickets</label>
-                    <input type="number" id="ticketCount"
-                           min="1" max="10"
-                           placeholder="Enter number of tickets">
-                </div>
-
-                <div class="price-display">
-                    <h3>Estimated Ticket Price</h3>
-                    <p id="totalPrice">₹ 0</p>
-                </div>
-
-                <button type="submit">Book Tickets</button>
-
-            </form>
-        </section>
-
-        <!-- Booking History -->
-        <section class="card">
-            <h2>Booking History</h2>
-
-            <button type="button" id="viewHistoryButton">
-                View Booking History
-            </button>
-
-            <div id="historyContainer" class="hidden">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Tickets</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="historyTableBody">
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <footer>
-            <p>© 2026 IPL Ticket Booking Portal | All Rights Reserved</p>
-        </footer>
 
     </div>
 
+    <script>
+
+        // Getting the URL parameters
+        var urlParams = new URLSearchParams(window.location.search);
+
+        // Getting match details
+        var matchTeams = urlParams.get("teams");
+        var matchDate = urlParams.get("date");
+        var matchVenue = urlParams.get("venue");
+
+        // Displaying match details
+        document.getElementById("displayTeams").innerText =
+            matchTeams || "Match not selected";
+
+        document.getElementById("displayDate").innerText =
+            matchDate || "Date not available";
+
+        document.getElementById("displayVenue").innerText =
+            matchVenue || "Venue not available";
+
+    </script>
+
 </body>
+
 </html>
