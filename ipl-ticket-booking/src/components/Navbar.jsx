@@ -1,17 +1,24 @@
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
     <nav className="navbar">
-      <h2>IPL Ticket Booking</h2>
+      <NavLink to="/" className="navbar-brand">
+        <span className="brand-icon">🏏</span>
+        <span>IPL <strong>ARENA</strong></span>
+      </NavLink>
 
       <div className="navbar-links">
-        <Link to="/">Home</Link>
-        <Link to="/matches">Matches</Link>
-        <Link to="/booking">Book Ticket</Link>
-        <Link to="/history">Booking History</Link>
+        <NavLink to="/" end>Home</NavLink>
+        <NavLink to="/matches">Matches</NavLink>
+        <NavLink to="/booking">Book Tickets</NavLink>
+        <NavLink to="/history">Booking History</NavLink>
       </div>
+
+      <NavLink to="/matches" className="navbar-cta">
+        Explore Now <span>↗</span>
+      </NavLink>
     </nav>
   );
 }

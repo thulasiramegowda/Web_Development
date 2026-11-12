@@ -1,465 +1,415 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>IPL Ticket Booking Portal</title>
 
     <style>
+      /* Reset and General Styles */
 
-        /* Reset and General Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+      body {
+        background-color: #f4f6f9;
+        color: #333;
+        padding-bottom: 40px;
+      }
 
-        body {
-            background-color: #f4f6f9;
-            color: #333;
-            padding-bottom: 40px;
-        }
+      header {
+        background-color: #0b1a30;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px 0;
+        margin-bottom: 30px;
+      }
 
-        header {
-            background-color: #0b1a30;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
+      /* Layout Container */
 
-        /* Layout Container */
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+      /* Card Styling */
 
-        /* Card Styling */
+      .card {
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
 
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
+      h2 {
+        color: #0b1a30;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #f4f6f9;
+        padding-bottom: 8px;
+      }
 
-        h2 {
-            color: #0b1a30;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #f4f6f9;
-            padding-bottom: 8px;
-        }
+      .match-details p {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
 
-        .match-details p {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
+      /* Form Styling */
 
-        /* Form Styling */
+      .form-group {
+        margin-bottom: 15px;
+      }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
 
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
+      select,
+      input[type="text"],
+      input[type="email"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
 
-        select,
-        input[type="text"],
-        input[type="email"],
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
+      /* Error Text Message Style */
 
-        /* Error Text Message Style */
+      .error-text {
+        color: #e21d24;
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 4px;
+      }
 
-        .error-text {
-            color: #e21d24;
-            font-size: 0.8rem;
-            display: block;
-            margin-top: 4px;
-        }
+      .price-display {
+        background-color: #eef7ee;
+        border: 1px solid #cce8cc;
+        border-radius: 4px;
+        padding: 12px;
+        margin-top: 15px;
+        text-align: center;
+        color: #2e7d32;
+      }
 
-        .price-display {
-            background-color: #eef7ee;
-            border: 1px solid #cce8cc;
-            border-radius: 4px;
-            padding: 12px;
-            margin-top: 15px;
-            text-align: center;
-            color: #2e7d32;
-        }
+      /* Button Styling */
 
-        /* Button Styling */
+      button {
+        width: 100%;
+        background-color: #e21d24;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background-color 0.2s;
+      }
 
-        button {
-            width: 100%;
-            background-color: #e21d24;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background-color 0.2s;
-        }
+      button:hover {
+        background-color: #c6161c;
+      }
 
-        button:hover {
-            background-color: #c6161c;
-        }
+      #viewHistoryButton {
+        background-color: #0b1a30;
+      }
 
-        #viewHistoryButton {
-            background-color: #0b1a30;
-        }
+      #viewHistoryButton:hover {
+        background-color: #050d1a;
+      }
 
-        #viewHistoryButton:hover {
-            background-color: #050d1a;
-        }
+      /* Table Design */
 
-        /* Table Design */
+      .hidden {
+        display: none;
+      }
 
-        .hidden {
-            display: none;
-        }
+      #historyContainer {
+        margin-top: 20px;
+      }
 
-        #historyContainer {
-            margin-top: 20px;
-        }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+      }
 
-        th,
-        td {
-            border: 1px solid #dddddd;
-            padding: 10px;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        th {
-            background-color: #f4f6f9;
-            font-weight: bold;
-        }
-
+      th {
+        background-color: #f4f6f9;
+        font-weight: bold;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <header>
-        <h1>IPL Ticket Booking Portal</h1>
+      <h1>IPL Ticket Booking Portal</h1>
     </header>
 
     <div class="container">
+      <!-- Match Details Section -->
 
-        <!-- Match Details Section -->
+      <section class="card">
+        <h2>Match Information</h2>
 
-        <section class="card">
+        <div class="match-details">
+          <p>
+            <strong>Match:</strong>
+            <span id="displayTeams">Loading...</span>
+          </p>
 
-            <h2>Match Information</h2>
+          <p>
+            <strong>Date:</strong>
+            <span id="displayDate">Loading...</span>
+          </p>
 
-            <div class="match-details">
+          <p>
+            <strong>Venue:</strong>
+            <span id="displayVenue">Loading...</span>
+          </p>
+        </div>
+      </section>
 
-                <p>
-                    <strong>Match:</strong>
-                    <span id="displayTeams">Loading...</span>
-                </p>
+      <section class="card">
+        <h2>Personal Information & Tickets</h2>
 
-                <p>
-                    <strong>Date:</strong>
-                    <span id="displayDate">Loading...</span>
-                </p>
+        <form id="bookingForm">
+          <!-- User Profile Inputs -->
 
-                <p>
-                    <strong>Venue:</strong>
-                    <span id="displayVenue">Loading...</span>
-                </p>
+          <div class="form-group">
+            <label for="userName">Full Name:</label>
 
-            </div>
+            <input type="text" id="userName" placeholder="Enter your Name" />
 
-        </section>
+            <span class="error-text" id="nameError"></span>
+          </div>
 
-        <section class="card">
+          <div class="form-group">
+            <label for="userEmail">Email:</label>
 
-            <h2>Personal Information & Tickets</h2>
+            <input type="email" id="userEmail" placeholder="name@example.com" />
 
-            <form id="bookingForm">
+            <span class="error-text" id="emailError"></span>
+          </div>
 
-                <!-- User Profile Inputs -->
+          <div class="form-group">
+            <label for="userMobile">Mobile Number:</label>
 
-                <div class="form-group">
+            <input type="text" id="userMobile" placeholder="10-digit" />
 
-                    <label for="userName">Full Name:</label>
+            <span class="error-text" id="mobileError"></span>
+          </div>
 
-                    <input type="text" id="userName" placeholder="Enter your Name">
+          <!-- Ticket Selection -->
 
-                    <span class="error-text" id="nameError"></span>
+          <div class="form-group">
+            <label for="standType">Choose Stand / Ticket Type:</label>
 
-                </div>
+            <select id="standType">
+              <option value="1200">General Stands - $1,200</option>
 
-                <div class="form-group">
+              <option value="2500">East Gallery - $2,500</option>
 
-                    <label for="userEmail">Email:</label>
+              <option value="5000">Grand Stand - $5,000</option>
 
-                    <input type="email" id="userEmail" placeholder="name@example.com">
+              <option value="12000">VIP Lounge - $12,000</option>
+            </select>
+          </div>
 
-                    <span class="error-text" id="emailError"></span>
+          <div class="form-group">
+            <label for="ticketCount">Number of Tickets:</label>
 
-                </div>
+            <input type="number" id="ticketCount" min="1" max="10" value="1" />
+          </div>
 
-                <div class="form-group">
+          <div class="price-display">
+            <h3>Total Amount : $<span id="totalAmount">1200</span></h3>
+          </div>
 
-                    <label for="userMobile">Mobile Number:</label>
-
-                    <input type="text" id="userMobile" placeholder="10-digit">
-
-                    <span class="error-text" id="mobileError"></span>
-
-                </div>
-
-                <!-- Ticket Selection -->
-
-                <div class="form-group">
-
-                    <label for="standType">Choose Stand / Ticket Type:</label>
-
-                    <select id="standType">
-
-                        <option value="1200">General Stands - $1,200</option>
-
-                        <option value="2500">East Gallery - $2,500</option>
-
-                        <option value="5000">Grand Stand - $5,000</option>
-
-                        <option value="12000">VIP Lounge - $12,000</option>
-
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="ticketCount">Number of Tickets:</label>
-
-                    <input type="number" id="ticketCount" min="1" max="10" value="1">
-
-                </div>
-
-                <div class="price-display">
-
-                    <h3>Total Amount : $<span id="totalAmount">1200</span></h3>
-
-                </div>
-
-                <button type="button" id="bookButton">Confirm</button>
-
-            </form>
-
-        </section>
-
+          <button type="button" id="bookButton">Confirm</button>
+        </form>
+      </section>
     </div>
 
     <!-- Script src="script.js"></script> -->
 
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var urlParams = new URLSearchParams(window.location.search);
 
-        document.addEventListener('DOMContentLoaded', function () {
+        var teams = urlParams.get("teams");
+        var date = urlParams.get("date");
+        var venue = urlParams.get("venue");
 
-            var urlParams = new URLSearchParams(window.location.search);
+        if (teams) {
+          document.getElementById("displayTeams").textContent = teams;
+        }
 
-            var teams = urlParams.get('teams');
-            var date = urlParams.get('date');
-            var venue = urlParams.get('venue');
+        if (date) {
+          document.getElementById("displayDate").textContent = date;
+        }
 
-            if (teams) {
-                document.getElementById('displayTeams').textContent = teams;
-            }
+        if (venue) {
+          document.getElementById("displayVenue").textContent = venue;
+        }
 
-            if (date) {
-                document.getElementById('displayDate').textContent = date;
-            }
+        var userNameInput = document.getElementById("userName");
+        var userEmailInput = document.getElementById("userEmail");
+        var userMobileInput = document.getElementById("userMobile");
 
-            if (venue) {
-                document.getElementById('displayVenue').textContent = venue;
-            }
+        var nameError = document.getElementById("nameError");
+        var emailError = document.getElementById("emailError");
+        var mobileError = document.getElementById("mobileError");
 
-            var userNameInput = document.getElementById("userName");
-            var userEmailInput = document.getElementById("userEmail");
-            var userMobileInput = document.getElementById("userMobile");
+        var standTypeSelect = document.getElementById("standType");
+        var ticketCountInput = document.getElementById("ticketCount");
+        var totalAmountSpan = document.getElementById("totalAmount");
 
-            var nameError = document.getElementById("nameError");
-            var emailError = document.getElementById("emailError");
-            var mobileError = document.getElementById("mobileError");
+        function updateTotalPrice() {
+          var ticketPrice = parseInt(standTypeSelect.value);
+          var count = parseInt(ticketCountInput.value);
 
-            var standTypeSelect = document.getElementById("standType");
-            var ticketCountInput = document.getElementById("ticketCount");
-            var totalAmountSpan = document.getElementById("totalAmount");
+          if (isNaN(count) || count < 1) {
+            count = 0;
+          }
 
-            function updateTotalPrice() {
+          var total = ticketPrice * count;
 
-                var ticketPrice = parseInt(standTypeSelect.value);
-                var count = parseInt(ticketCountInput.value);
+          totalAmountSpan.innerText = total;
+        }
 
-                if (isNaN(count) || count < 1) {
-                    count = 1;
-                }
+        function validate() {
+          var isValid = true;
 
-                var total = ticketPrice * count;
+          nameError.innerText = "";
+          emailError.innerText = "";
+          mobileError.innerText = "";
 
-                totalAmountSpan.innerText = total;
+          var nameValue = userNameInput.value.trim();
 
-            }
+          if (nameValue === "") {
+            nameError.innerText = "Name is required.";
+            isValid = false;
+          }
 
-            function validate() {
+          var emailValue = userEmailInput.value.trim();
 
-                var isValid = true;
+          var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                nameError.innerText = "";
-                emailError.innerText = "";
-                mobileError.innerText = "";
+          if (emailValue === "") {
+            emailError.innerText = "Email is required.";
+            isValid = false;
+          } else if (emailPattern.test(emailValue) === false) {
+            emailError.innerText = "Please enter a valid Email address.";
+            isValid = false;
+          }
 
-                var nameValue = userNameInput.value.trim();
+          var mobileValue = userMobileInput.value.trim();
 
-                if (nameValue === "") {
-                    nameError.innerText = "Name is required.";
-                    isValid = false;
-                }
+          var mobilePattern = /^[6-9][0-9]{9}$/;//regular expersitions
 
-                var emailValue = userEmailInput.value.trim();
+          if (mobileValue === "") {
+            mobileError.innerText = "Mobile Number is required.";
+            isValid = false;
+          } else if (mobilePattern.test(mobileValue) === false) {
+            mobileError.innerText = "Mobile Number must be exactly 10 digits.";
+            isValid = false;
+          }
 
-                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return isValid;
+        }
 
-                if (emailValue === "") {
-                    emailError.innerText = "Email is required.";
-                    isValid = false;
-                }
-                else if (emailPattern.test(emailValue) === false) {
-                    emailError.innerText = "Please enter a valid Email address.";
-                    isValid = false;
-                }
+        function handleBooking() {
+          if (validate() === false) {
+            return;
+          }
 
-                var mobileValue = userMobileInput.value.trim();
+          var ticketPrice = parseInt(standTypeSelect.value);
+          var count = parseInt(ticketCountInput.value);
 
-                var mobilePattern = /^[6-9][0-9]{9}$/;
+          if (isNaN(count) || count < 1 || count > 10) {
+            alert("Please enter a valid number of tickets.");
+            return;
+          }
 
-                if (mobileValue === "") {
-                    mobileError.innerText = "Mobile Number is required.";
-                    isValid = false;
-                }
-                else if (mobilePattern.test(mobileValue) === false) {
-                    mobileError.innerText = "Mobile Number must be exactly 10 digits.";
-                    isValid = false;
-                }
+          var total = ticketPrice * count;
 
-                return isValid;
+          var selectedStandText =
+            standTypeSelect.options[standTypeSelect.selectedIndex].text;
 
-            }
+          var newBooking = {
+            name: userNameInput.value.trim(),
 
-            function handleBooking() {
+            email: userEmailInput.value.trim(),
 
-                if (validate() === false) {
-                    return;
-                }
+            mobile: userMobileInput.value.trim(),
 
-                var ticketPrice = parseInt(standTypeSelect.value);
-                var count = parseInt(ticketCountInput.value);
+            stand: selectedStandText,
 
-                if (isNaN(count) || count < 1 || count > 10) {
-                    alert("Please enter a valid number of tickets.");
-                    return;
-                }
+            tickets: count,
 
-                var total = ticketPrice * count;
+            totalPrice: total,
+          };
 
-                var selectedStandText =
-                    standTypeSelect.options[standTypeSelect.selectedIndex].text;
+          var existingBookings = localStorage.getItem("iplBookings");//to access local storage 5MB
 
-                var newBooking = {
+          var bookingsArray;
 
-                    name: userNameInput.value.trim(),
+          if (existingBookings) {
+            bookingsArray = JSON.parse(existingBookings);
+          } else {
+            bookingsArray = [];
+          }
 
-                    email: userEmailInput.value.trim(),
+          bookingsArray.push(newBooking);
 
-                    mobile: userMobileInput.value.trim(),
+          localStorage.setItem("iplBookings", JSON.stringify(bookingsArray));
 
-                    stand: selectedStandText,
+          alert("Ticket booked successfully! Total amount: Rs." + total);
 
-                    tickets: count,
+          userNameInput.value = "";
+          userEmailInput.value = "";
+          userMobileInput.value = "";
+          ticketCountInput.value = 1;
 
-                    totalPrice: total
+          updateTotalPrice();
+        }
 
-                };
+        standTypeSelect.addEventListener("change", updateTotalPrice);
 
-                var existingBookings = localStorage.getItem("iplBookings");
+        ticketCountInput.addEventListener("input", updateTotalPrice);
 
-                var bookingsArray;
+        document
+          .getElementById("bookButton")
+          .addEventListener("click", handleBooking);
 
-                if (existingBookings) {
-
-                    bookingsArray = JSON.parse(existingBookings);
-
-                }
-                else {
-
-                    bookingsArray = [];
-
-                }
-
-                bookingsArray.push(newBooking);
-
-                localStorage.setItem("iplBookings", JSON.stringify(bookingsArray));
-
-                alert("Ticket booked successfully! Total amount: Rs." + total);
-
-                userNameInput.value = "";
-                userEmailInput.value = "";
-                userMobileInput.value = "";
-                ticketCountInput.value = 1;
-
-                updateTotalPrice();
-
-            }
-
-            standTypeSelect.addEventListener("change", updateTotalPrice);
-
-            ticketCountInput.addEventListener("input", updateTotalPrice);
-
-            document.getElementById("bookButton").addEventListener("click", handleBooking);
-
-            updateTotalPrice();
-
-        });
-
+        updateTotalPrice();
+      });
     </script>
-
-</body>
-
+  </body>
 </html>
