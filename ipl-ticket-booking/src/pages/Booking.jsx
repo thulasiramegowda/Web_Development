@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { supabase } from "../supabase";
 
 function Booking() {
   const [name, setName] = useState("");
@@ -8,20 +9,39 @@ function Booking() {
   const [venue, setVenue] = useState("");
   const [booked, setBooked] = useState(false);
 
-  function handleBooking() {
-    if (!name.trim() || !tickets || !stand || !venue) {
-      alert("Please fill all the details");
-      return;
-    }
-
-    if (!Number.isInteger(Number(tickets)) || Number(tickets) < 1) {
-      alert("Please enter a valid number of tickets");
-      return;
-    }
-
-    setBooked(true);
-    alert("Ticket booked successfully!");
+ 
+async function handleBooking() {
+  if (!name.trim() || !tickets || !stand || !venue) {
+    alert("Please fill all the details");
+    return;
   }
+
+  if (!Number.isInteger(Number(tickets)) || Number(tickets) < 1) {
+    alert("Please enter a valid number of tickets");
+    return;
+  }
+
+  const { error } = await supabase
+    .from("bookings")
+    .insert([
+      {
+        name: name.trim(),
+        tickets: Number(tickets),
+        stand: stand,
+        venue: venue
+      }
+    ]);
+
+  if (error) {
+    console.error(error);
+    alert("Booking failed: " + error.message);
+    return;
+  }
+
+  setBooked(true);
+  alert("Ticket booked successfully!");
+}
+
 
   return (
     <main className="booking-page">
